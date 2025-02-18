@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controller.AdminDemandeSponsoring"
+            prefHeight="500.0" prefWidth="700.0"
+            stylesheets="style1.css">
+
+    <VBox spacing="20" alignment="CENTER">
+        <!-- TableView -->
+        <TableView fx:id="demandeTable" prefHeight="400" prefWidth="700">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="100" />
+                <TableColumn fx:id="sponsorIdColumn" text="Sponsor ID" prefWidth="150" />
+                <TableColumn fx:id="eventIdColumn" text="Event ID" prefWidth="150" />
+                <TableColumn fx:id="statutColumn" text="Status" prefWidth="150" />
+                <TableColumn fx:id="justificationColumn" text="Justification" prefWidth="250" />
+            </columns>
+        </TableView>
+
+        <!-- Buttons (Accept & Reject) -->
+        <HBox spacing="15" alignment="CENTER">
+            <Button fx:id="acceptButton" text="✅ Accept" onAction="#handleAccept"
+                    styleClass="accept-button"/>
+            <Button fx:id="rejectButton" text="❌ Reject" onAction="#handleReject"
+                    styleClass="reject-button"/>
+        </HBox>
+    </VBox>
+
+</AnchorPane>

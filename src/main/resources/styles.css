@@ -1,0 +1,372 @@
+/* styles.css */
+
+/* Apply general styles to all text */
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+/* Set background color of "Cancel" button to grey */
+.cancel-button {
+    -fx-background-color: #808080 !important; /* Grey background color */
+    -fx-text-fill: white; /* White text color */
+}
+
+/* Apply styles to choice boxes */
+.choice-box {
+    -fx-font-size: 14px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 30px;
+    -fx-background-color: #f8f8f8; /* Light gray background color */
+    -fx-border-width: 1px; /* Add border */
+    -fx-border-color: #ccc; /* Light gray border color */
+    -fx-border-radius: 3px; /* Rounded corners */
+}
+
+/* Apply styles to buttons */
+.button {
+    -fx-font-size: 14px;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 40px;
+    -fx-background-color: #009900; /* Green background color */
+    -fx-text-fill: white; /* White text color */
+    -fx-border-width: 0px; /* Remove border */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-cursor: hand; /* Show hand cursor on hover */
+}
+
+
+/* Apply styles to the grid pane */
+.grid-pane {
+    -fx-hgap: 10px; /* Horizontal gap between cells */
+    -fx-vgap: 10px; /* Vertical gap between cells */
+}
+
+/* Apply styles to the anchor pane */
+.anchor-pane {
+    -fx-background-color: #ffffff; /* White background color */
+}
+/* Title style */
+/* Title style */
+.title {
+    -fx-font-size: 40px; /* Increase font size */
+    -fx-font-weight: bold; /* Make the font bold */
+    -fx-letter-spacing: 1px; /* Letter spacing */
+    -fx-text-transform: uppercase; /* Uppercase text */
+}
+
+
+/* Top decoration style */
+.title-decoration-top {
+    -fx-background-color: #8B4513; /* Decoration color */
+    -fx-pref-width: 75px; /* Decoration width */
+    -fx-pref-height: 3px; /* Decoration height */
+    -fx-layout-x: 42px; /* Horizontal position (adjust as needed) */
+    -fx-layout-y: -5px; /* Vertical position (adjust as needed) */
+}
+
+/* Bottom decoration style */
+.title-decoration-bottom {
+    -fx-background-color: #8B4513; /* Decoration color */
+    -fx-pref-width: 75px; /* Decoration width */
+    -fx-pref-height: 3px; /* Decoration height */
+    -fx-layout-x: 42px; /* Horizontal position (adjust as needed) */
+    -fx-layout-y: 24px; /* Vertical position (adjust as needed) */
+}
+
+.sidebar .hyperlink {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-text-fill: white; /* Change to your preferred hyperlink color */
+}
+
+.hyperlink.active {
+    -fx-text-fill: #009900; /* Active text color */
+}
+#uploadImageButton {
+    /* Add your CSS styles here */
+    -fx-background-color: transparent; /* Set background color to transparent */
+    -fx-text-fill: black; /* Set text color */
+    /* Add more styles as needed */
+}
+.alert {
+    -fx-background-color: #f0f0f0; /* Background color */
+    -fx-border-color: #ccc; /* Border color */
+}
+
+.alert .dialog-pane {
+    -fx-background-color: transparent; /* Transparent background for the dialog pane */
+}
+
+.alert {
+    -fx-min-width: 400px;
+    -fx-min-height: 200px;
+    -fx-pref-width: 400px;
+    -fx-pref-height: 200px;
+}
+.small-button {
+    -fx-min-width: 15px;
+    -fx-min-height: 30px;
+    -fx-max-width: 20px;
+    -fx-max-height: 40px;
+    -fx-margin-top: 5px; /* Add margin top */
+    -fx-background-color: transparent;
+
+}
+.stock-item{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 30;
+}
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+.grid-pane .item-pane {
+    -fx-padding: 10px; /* Adjust the value to set the desired margin */
+}
+/* In your styles.css file */
+#scrollPane {
+    -fx-padding: 15px; /* Adjust the padding as needed */
+}
+/* In your styles.css file */
+#gridPane {
+    -fx-padding: 15px; /* Adjust the padding as needed */
+}
+#chosenStockCard {
+    -fx-background-color: #a9895b;
+    -fx-background-radius: 30;
+}
+
+.free-delivery-card{
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 30;
+}
+
+.shopping-online-card{
+    -fx-background-color: #BAEAC3;
+    -fx-background-radius: 30;
+}
+/* mn houni hajer */
+.menu {
+    -fx-background-color: linear-gradient(to bottom, white, #ffffff);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);
+}
+
+.menubutton {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+
+}
+
+.menuicon {
+    -fx-blend-mode: multiply;
+    -fx-background-color: black;
+}
+
+.menubutton.selected {
+    -fx-background-color: #009900;
+    -fx-text-fill: white;
+}
+
+.textField{
+    -fx-background-color:white;
+    -fx-background-radius:1em;
+}
+
+.textFieldGreen {
+    -fx-background-color: white;
+    -fx-background-radius: 1em;
+    -fx-border-width: 1px;
+    -fx-border-color: #009900;
+    -fx-border-radius: 1em;
+}
+.textFieldBrown {
+    -fx-background-color: white;
+    -fx-background-radius: 1em;
+    -fx-border-width: 1px;
+    -fx-border-color: #8B4513;
+    -fx-border-radius: 1em;
+}
+
+.datePicker {
+    -fx-background-color: white;
+    -fx-background-radius: 1em;
+}
+
+.datePicker .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.datePickerGreen {
+    -fx-background-color: transparent;
+    -fx-background-radius: 1em;
+    -fx-border-width: 2px;
+    -fx-border-color: #1F864F;
+    -fx-border-radius: 1em;
+}
+
+.datePickerGreen .arrow-button {
+    -fx-background-color: transparent;
+}
+
+
+.datePicker .arrow-button:hover {
+    -fx-background-color: #dddddd;
+}
+
+
+.text-field .text {
+    -fx-effect: dropshadow( two-pass-box , white , .5, 10 , 1 , 1);
+}
+
+.combo-box-base .text{
+    -fx-fill: rgb(130.0, 130.0, 130.0);
+}
+
+.btn{
+    -fx-background-color:#009900;
+    -fx-background-radius: 5em;
+    -fx-color: #ff1744;
+}
+
+.table-view {
+    -fx-background-color: white;
+}
+
+.table-cell {
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-cell-size : 20;
+    -fx-background-color: white;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 16;
+    -fx-alignment: CENTER_LEFT;
+}
+.table-view .column-header .label {
+    -fx-font-size: 16;
+    -fx-alignment: CENTER_LEFT;
+    -fx-text-fill: #1F864F;
+}
+.table-view .cell {
+    -fx-cell-size: 30;
+    -fx-text-fill: #000000;
+    -fx-font-size: 15;
+    -fx-alignment: CENTER_LEFT;
+}
+.table-view .table-row-cell:selected{
+    -fx-background-color: #009900;
+}
+.table-row-cell:selected {
+    -fx-background-color: #009900;
+}
+
+.table-row-cell:selected .text {
+    -fx-fill: white;
+}
+
+
+.tab {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-color: #009900;
+    -fx-border-color: grey;
+    -fx-border-width: 0px 0px 3px 0px;
+}
+
+.tab:selected {
+    -fx-border-color: red;
+    -fx-border-width: 0px 0px 2.5px 0px;
+}
+
+.tab-label {
+    -fx-font-size: 16;
+    -fx-text-fill: #ffffff;
+}
+
+.tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab-down-button {
+    -fx-padding: 0;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0 0 0 140;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 16;
+    -fx-alignment: CENTER_LEFT;
+    -fx-text-fill: #8B4513;
+}
+
+.table-view .cell {
+    -fx-cell-size: 30;
+    -fx-font-size: 15;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-view .scroll-bar:vertical {
+    -fx-background-color: #CCCCCC;
+    -fx-background-insets: 0;
+}
+
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #009900;
+}
+
+.table-view .scroll-bar:horizontal {
+    -fx-background-color: #CCCCCC;
+    -fx-background-insets: 0;
+}
+
+.table-view .scroll-bar:horizontal .thumb {
+    -fx-background-color: #009900;
+}
+
+/* Styles for the Delivered button */
+.delivered-button{
+    -fx-background-color: #009900; /* Green */
+}
+
+/* Styles for the Cancel button */
+.cancelbutton {
+    -fx-background-color: #ff0000; /* Red */
+}
+
+/* Styles for the Delete button */
+.delete-button {
+    -fx-background-color: #0000ff; /* Blue */
+}
+
+/* General Form Styling */
+.text-field, .text-area, .date-picker {
+    -fx-padding: 8px;
+    -fx-border-color: #D3D3D3;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+/* Buttons */
+.button {
+    -fx-font-size: 14px;
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+.button:hover {
+    -fx-background-color: #45A049;
+}
+
+/* Labels */
+.label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333333;
+}

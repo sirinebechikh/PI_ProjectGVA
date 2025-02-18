@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controller.UpdateEventController"
+            prefHeight="500.0" prefWidth="700.0"
+            stylesheets="@styles.css">
+
+    <GridPane alignment="CENTER" hgap="15" vgap="15"
+              style="-fx-padding: 20px; -fx-background-color: #F9F9F9; -fx-border-radius: 15px; -fx-border-color: #DDDDDD; -fx-border-width: 2px;">
+
+        <!-- Title -->
+        <Label text="Modifier l'Événement" GridPane.columnIndex="1" GridPane.rowIndex="0"
+               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+
+        <!-- Name -->
+        <Label text="Nom:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <!-- Type -->
+        <Label text="Type:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="typeField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <!-- Budget -->
+        <Label text="Budget:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="budgetField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <!-- Description -->
+        <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+        <!-- Date Pickers -->
+        <Label text="Date Début:" GridPane.columnIndex="0" GridPane.rowIndex="5" style="-fx-font-weight: bold;"/>
+        <DatePicker fx:id="startDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+        <Label text="Date Fin:" GridPane.columnIndex="0" GridPane.rowIndex="6" style="-fx-font-weight: bold;"/>
+        <DatePicker fx:id="endDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+        <!-- Location -->
+        <Label text="Lieu:" GridPane.columnIndex="0" GridPane.rowIndex="7" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="locationField" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+        <Label text="Lieu:" GridPane.columnIndex="0" GridPane.rowIndex="8" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="Activities" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+
+        <!-- Image Upload -->
+        <Label text="Image:" GridPane.columnIndex="0" GridPane.rowIndex="9" style="-fx-font-weight: bold;"/>
+        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="9">
+            <Button fx:id="uploadImageButton" onAction="#chooseImageFile" style="-fx-background-color: transparent;">
+                <graphic>
+                    <ImageView fitHeight="30" fitWidth="30">
+                        <Image url="@icons/uploadicon.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+            <TextField fx:id="imageTF" onMouseClicked="#chooseImageFile"
+                       prefHeight="33.0" prefWidth="375.0" promptText="Click to choose an image"/>
+        </HBox>
+
+        <!-- Save Button -->
+        <Button onAction="#handleSave" text="Sauvegarder"
+                GridPane.columnIndex="1" GridPane.rowIndex="10"
+                style="-fx-font-size: 16px; -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 10px 20px; -fx-border-radius: 10px;"/>
+    </GridPane>
+</AnchorPane>

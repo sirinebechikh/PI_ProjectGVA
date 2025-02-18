@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.events">
+    <children>
+
+        <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <left>
+                <VBox prefHeight="200.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@style.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
+                            <children>
+                                <!-- Logo Image -->
+                                <ImageView fx:id="logoImageView" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@logo.jpeg" />
+                                    </image>
+                                </ImageView>
+
+                                <Label alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="80.0" prefWidth="500.0" style="-fx-font-size: 40px; -fx-font-weight: bold; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 2, 2);" text="Evenement" textFill="#222222" />
+                            </children>
+                        </HBox>
+                        <VBox fx:id="chosenFruitCard" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="360.0" style="-fx-background-color: #939597;" stylesheets="@style.css">
+                            <VBox.margin>
+                                <Insets left="50.0" right="50.0" />
+                            </VBox.margin>
+                            <children>
+                                <HBox prefHeight="60.0" prefWidth="335.0">
+                                    <children>
+                                        <Label fx:id="LocationNameLabel" prefHeight="48.0" prefWidth="276.0" text="Sport" textFill="WHITE">
+                                            <font>
+                                                <Font name="Cambria" size="24.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="LocationPriceLabel" prefHeight="57.0" prefWidth="171.0" text="\$15" textFill="WHITE">
+                                            <font>
+                                                <Font name="Cambria" size="24.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets left="20.0" top="30.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <ImageView fx:id="locationimg" fitHeight="170.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
+
+                                          <VBox.margin>
+                                        <Insets top="20.0" />
+                                    </VBox.margin>
+                                </ImageView>
+                                <Label prefHeight="30.0" prefWidth="313.0" text="Adresse:" textFill="WHITE">
+                                    <font>
+                                        <Font name="Cambria" size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="adresseLabel" prefHeight="67.0" prefWidth="293.0" text="test" textFill="WHITE"> <!-- Update to have an FX ID -->
+                                    <font>
+                                        <Font name="Cambria" size="12.0" />
+                                    </font>
+                                </Label>
+                                <Separator prefHeight="0.0" prefWidth="118.0" />
+
+                                      <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                                    <VBox.margin>
+                                        <Insets top="20.0" />
+                                    </VBox.margin>
+                                    <children>
+                                        <Label prefHeight="17.0" prefWidth="319.0" text="Description:" textFill="WHITE">
+                                            <font>
+                                                <Font name="Cambria" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                                    <children>
+                                        <Label fx:id="descriptionLabel" prefHeight="56.0" prefWidth="327.0" text="desc exemple" textFill="WHITE"> <!-- Update to have an FX ID -->
+                                            <font>
+                                                <Font name="Cambria" size="12.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                        </HBox>
+
+                        <Button fx:id="delete" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handledelete" prefHeight="48.0" prefWidth="120.0" styleClass="delete-btn" stylesheets="@style.css" text="Delete" textFill="#828282">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="-75.0" left="160.0" />
+                           </VBox.margin>
+                        </Button>
+                                <Button fx:id="updatebutton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="48.0" prefWidth="120.0" styleClass="add-btn" stylesheets="@style.css" text="Update" textFill="#828282">
+                                    <VBox.margin>
+                                        <Insets bottom="20.0" right="160.0" top="30.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="System Bold" size="18.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                            <styleClass>
+                                <String fx:value="chosen-fruit-card" />
+                                <String fx:value="shadow" />
+                            </styleClass>
+                        </VBox>
+
+
+                        <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
+                    </children>
+                </VBox>
+
+            </left>
+            <center>
+                <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0">
+                            <VBox.margin>
+                                <Insets left="20.0" right="20.0" />
+                            </VBox.margin>
+                            <children>
+                                <Pane prefHeight="65.0" prefWidth="393.0" HBox.hgrow="ALWAYS">
+                           <children>
+                                      <!-- New Button for Demande Sponsoring -->
+                                      <Button fx:id="demandeSponsoringButton" layoutX="7.0" layoutY="12.0" onAction="#handleDemandeSponsoring" prefHeight="50.0" prefWidth="200.0" styleClass="demande-sponsoring-button" stylesheets="@style.css" text="Demande Sponsoring" textFill="WHITE">
+                                          <font>
+                                              <Font name="Cambria" size="18.0" />
+                                          </font>
+                                      </Button>
+                           </children></Pane>
+                                <Button fx:id="addEventButton" onAction="#handleAddEvent" prefHeight="50.0" prefWidth="150.0" styleClass="add-event-button" stylesheets="@style.css" text="Add Event">
+                                    <font>
+                                        <Font name="Cambria" size="18.0" />
+                                    </font>
+                                </Button>
+                                <ImageView fitHeight="50.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+
+                                </ImageView>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #939597;" VBox.vgrow="ALWAYS">
+                            <children>
+                                <ScrollPane fx:id="scroll" prefHeight="800.0" prefWidth="839.0" styleClass="transparent">
+                                    <content>
+                                        <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                            </rowConstraints>
+                                        </GridPane>
+                                    </content>
+                                    <HBox.margin>
+                                        <Insets top="10.0" />
+                                    </HBox.margin>
+                                </ScrollPane>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

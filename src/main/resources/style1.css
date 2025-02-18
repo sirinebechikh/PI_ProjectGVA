@@ -1,0 +1,49 @@
+/* ===== General Styles ===== */
+.root {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 20px;
+}
+
+/* ===== Title Label ===== */
+.label {
+    -fx-font-size: 24px;
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+}
+
+/* ===== TableView Styling ===== */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.table-column {
+    -fx-alignment: CENTER;
+}
+
+/* ===== Buttons Styling ===== */
+.button {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+/* Accept Button */
+#acceptButton {
+    -fx-background-color: #4CAF50;
+}
+#acceptButton:hover {
+    -fx-background-color: #45a049;
+}
+
+/* Reject Button */
+#rejectButton {
+    -fx-background-color: #e74c3c;
+}
+#rejectButton:hover {
+    -fx-background-color: #c0392b;
+}

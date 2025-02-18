@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddEvent">
+
+    <!-- Container for form -->
+    <GridPane alignment="CENTER" hgap="15" style="-fx-padding: 20px; -fx-background-color: #F9F9F9; -fx-border-radius: 15px; -fx-border-color: #DDDDDD; -fx-border-width: 2px;" vgap="20">
+
+        <!-- Title -->
+        <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Ajouter un Événement" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <!-- Name -->
+        <Label style="-fx-font-weight: bold;" text="Nom:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="nomField" style="-fx-border-radius: 10px; -fx-background-radius: 10px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <!-- Type -->
+        <Label style="-fx-font-weight: bold;" text="Type:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="typeField" style="-fx-border-radius: 10px; -fx-background-radius: 10px;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <!-- Number of Guests -->
+        <Label style="-fx-font-weight: bold;" text="Nombre d'Invités:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="nombreInviteField" style="-fx-border-radius: 10px; -fx-background-radius: 10px;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <!-- Date -->
+        <Label style="-fx-font-weight: bold;" text="Date Début:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <DatePicker fx:id="dateDebutPicker" style="-fx-border-radius: 10px; -fx-background-radius: 10px;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+        <Label style="-fx-font-weight: bold;" text="Date Fin:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <DatePicker fx:id="dateFinPicker" style="-fx-border-radius: 10px; -fx-background-radius: 10px;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+        <!-- Description -->
+        <Label style="-fx-font-weight: bold;" text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+        <TextArea fx:id="descriptionField" style="-fx-border-radius: 10px; -fx-background-radius: 10px;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+        <!-- Location -->
+        <Label style="-fx-font-weight: bold;" text="Lieu:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+        <TextField fx:id="lieuField" style="-fx-border-radius: 10px; -fx-background-radius: 10px;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+        <!-- Budget -->
+        <Label style="-fx-font-weight: bold;" text="Budget Prévu:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+        <TextField fx:id="budgetField" style="-fx-border-radius: 10px; -fx-background-radius: 10px;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+        <!-- Activities -->
+        <Label style="-fx-font-weight: bold;" text="Activités:" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+        <TextField fx:id="activitiesField" style="-fx-border-radius: 10px; -fx-background-radius: 10px;" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+
+        <!-- Image Upload -->
+        <Label style="-fx-font-weight: bold;" text="Image:" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="10">
+            <Button fx:id="uploadImageButton" onAction="#chooseImageFile" style="-fx-background-color: transparent;">
+                <graphic>
+                    <ImageView fitHeight="30" fitWidth="30">
+                        <Image url="@icons/uploadicon.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+            <TextField fx:id="imageTF1" onMouseClicked="#chooseImageFile" prefHeight="33.0" prefWidth="375.0" promptText="Click to choose an image" style="-fx-border-radius: 10px; -fx-background-radius: 10px;" />
+        </HBox>
+        <Pane fx:id="imagePane" layoutX="958.0" layoutY="482.0" prefHeight="74.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.rowSpan="7" />
+
+        <!-- Submit Button -->
+        <Button onAction="#ajouterEvenement" style="-fx-font-size: 16px; -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 10px 20px; -fx-border-radius: 10px; -fx-background-radius: 10px;" text="Ajouter" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+
+    </GridPane>
+</AnchorPane>
