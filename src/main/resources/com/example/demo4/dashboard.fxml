@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<!-- L'image de fond -->
+
+<AnchorPane id="AnchorPane" prefHeight="896.0" prefWidth="1338.0" stylesheets="@fullpackstyling.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo4.AjouterreclamationController">
+    <children>
+      <TextField fx:id="imageevField" layoutX="213.0" layoutY="192.0" prefHeight="35.0" prefWidth="118.0" promptText="IMAGE reclamation" style="-fx-background-radius: 30;" />
+                              <TextField fx:id="nameField" layoutX="209.0" layoutY="116.0" prefHeight="35.0" prefWidth="126.0" promptText="NOM reclamation" style="-fx-background-radius: 30;" />
+        <Button fx:id="ajouter" layoutX="994.0" layoutY="197.0" mnemonicParsing="false" onAction="#navigue" prefHeight="44.0" prefWidth="225.0" style="-fx-background-radius: 30;" text="consulter reponses" textFill="#41c91b" />
+
+                              <!-- Boutons -->
+                              <Button fx:id="supprimerBoutton" layoutX="685.0" layoutY="567.0" mnemonicParsing="false" onAction="#supprimerreclamation" prefHeight="44.0" prefWidth="180.0" style="-fx-background-radius: 30;" text="SUPPRIMER" textFill="#4dc366" />
+                              <Button fx:id="ajouterButton" layoutX="114.0" layoutY="481.0" mnemonicParsing="false" onAction="#ajouterreclamation" prefHeight="44.0" prefWidth="180.0" style="-fx-background-radius: 30;" text="AJOUTER" textFill="#41c91b" />
+                              <Button fx:id="modifierBoutton" layoutX="354.0" layoutY="567.0" mnemonicParsing="false" onAction="#modifierreclamation" prefHeight="44.0" prefWidth="180.0" style="-fx-background-radius: 30;" text="MODIFIER" textFill="#4bb508" />
+                              <!-- TableView -->
+                              <TableView fx:id="reclamationTv" layoutX="358.0" layoutY="331.0" onMouseClicked="#choisirev" prefHeight="204.0" prefWidth="580.0" style="-fx-background-color: #FFE4B5;">
+                                 <columns>
+                                    <TableColumn fx:id="nomevTv" prefWidth="127.99999618530273" text="NOM reclamation" />
+                                    <TableColumn fx:id="imageevTv" minWidth="9.599945068359375" prefWidth="123.0" text="IMAGE reclamation" />
+                                    <TableColumn fx:id="updatedevTv" prefWidth="149.0" text="updated" />
+                                    <TableColumn fx:id="descriptionevTv" prefWidth="177.0" text="commentaire" />
+                                 </columns>
+                              </TableView>
+                              <DatePicker fx:id="updatedevField" layoutX="94.0" layoutY="331.0" prefHeight="17.0" prefWidth="140.0" />
+                              <!-- Autres composants -->
+                              <Label fx:id="idLabel" layoutX="31.0" layoutY="98.0" prefHeight="18.0" prefWidth="37.0" />
+                              <TextField fx:id="idmodifierField" layoutX="366.0" layoutY="288.0" opacity="0.0" prefHeight="35.0" prefWidth="92.0" promptText="Id reclamation" style="-fx-background-radius: 30;" />
+                              <ImageView fx:id="imageview" fitHeight="250.0" fitWidth="446.0" layoutX="476.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
+                              <TextField fx:id="rechercher" layoutX="733.0" layoutY="293.0" onKeyPressed="#rechercherev" prefHeight="25.0" prefWidth="161.0" promptText="chercher par NOM" />
+                              <!-- Composants -->
+                              <TextField fx:id="descriptionevField" layoutX="209.0" layoutY="271.0" prefHeight="35.0" prefWidth="126.0" promptText="commentaire" style="-fx-background-radius: 30;" />
+                              <Label layoutX="24.0" layoutY="116.0" prefHeight="17.0" prefWidth="140.0" text="NOM Reclamation" textFill="#0f1951">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="24.0" layoutY="280.0" prefHeight="17.0" prefWidth="180.0" text="commentaire" textFill="#2f3565">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="22.0" layoutY="192.0" prefHeight="17.0" prefWidth="126.0" text="IMAGE reclamation" textFill="#1d1a43">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <!-- Bouton "upload" -->
+                              <Button fx:id="uploadButton" layoutX="387.0" layoutY="197.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="44.0" prefWidth="153.0" text="upload" textFill="#57c922" />
+                              <ImageView fx:id="QrCode" fitHeight="105.0" fitWidth="175.0" layoutX="21.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </AnchorPane>

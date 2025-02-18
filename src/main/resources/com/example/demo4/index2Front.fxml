@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<!-- L'image de fond -->
+
+<AnchorPane id="AnchorPane" prefHeight="896.0" prefWidth="1338.0" stylesheets="@fullpackstyling.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo4.AfficherreponseFrontController">
+   <children>
+                                          <Label layoutX="14.0" layoutY="11.0" prefHeight="36.0" prefWidth="86.0" text="Trier">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="fullnameevField" layoutX="814.0" layoutY="66.0" prefHeight="44.0" prefWidth="214.0" promptText="fullname" style="-fx-background-radius: 30;" />
+                                          <TextField fx:id="descriptionevField" layoutX="521.0" layoutY="44.0" prefHeight="88.0" prefWidth="214.0" promptText="commentaire" style="-fx-background-radius: 30;" />
+
+
+                                    <TableView fx:id="tablereponse" layoutX="35.0" layoutY="206.0" onMouseClicked="#choisirreponse" prefHeight="318.0" prefWidth="1025.0">
+                                       <columns>
+                                          <TableColumn fx:id="idevTv" prefWidth="211.0" text="name de reclamation" />
+
+                                          <TableColumn fx:id="descriptionevTv" prefWidth="290.0" text="commentaire" />
+                                          <TableColumn fx:id="fullnameevTv" prefWidth="414.0" text="fullname" />
+                                       </columns>
+                                    </TableView>
+                                    <TextField fx:id="idread" layoutX="778.0" layoutY="374.0" opacity="0.0" prefHeight="45.0" prefWidth="214.0" promptText="Id Reponse" />
+                                    <TextField fx:id="iduserField" layoutX="778.0" layoutY="445.0" opacity="0.0" prefHeight="45.0" prefWidth="214.0" promptText="Id Utilisateur" />
+                                    <TextField fx:id="idevField" layoutX="778.0" layoutY="516.0" opacity="0.0" prefHeight="45.0" prefWidth="214.0" promptText="Id reclamation" />
+                                    <Button fx:id="ajouter" layoutX="83.0" layoutY="86.0" mnemonicParsing="false" onAction="#ajouterreclamation" prefHeight="59.0" prefWidth="201.0" style="-fx-background-radius: 30;" text="ajouter reclamation" textFill="#81d06e">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                    </Button>
+                                    <TextField fx:id="chercherevField" layoutX="304.0" layoutY="76.0" nodeOrientation="LEFT_TO_RIGHT" onKeyPressed="#rechercherreclamation" opacity="0.0" prefHeight="57.0" prefWidth="246.0" promptText="donner le nom d'reclamation" style="-fx-background-radius: 30;" />
+                                 </children>
+                              </AnchorPane>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ecotourism.project.controllers.loginController">
+   <children>
+      <AnchorPane fx:id="main_form" prefHeight="500.0" prefWidth="900.0">
+         <children>
+            <AnchorPane fx:id="loglayer1" layoutX="601.0" layoutY="1.0" prefHeight="500.0" prefWidth="300.0" styleClass="left-form" stylesheets="@loginstyle.css" visible="false">
+               <children>
+                  <Label layoutX="27.0" layoutY="455.0" style="-fx-text-fill: white;" text="©Ecotourism 2024" />
+                  <Button fx:id="btn1" layoutX="35.0" layoutY="221.0" mnemonicParsing="false" onAction="#handleSignupButton" prefHeight="30.0" prefWidth="230.0" styleClass="goto-signup" stylesheets="@loginstyle.css" text="S'inscrire" textFill="#262424">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="122.0" layoutY="79.0" style="-fx-text-fill: white;" text="Hello !">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="36.0" layoutY="106.0" style="-fx-text-fill: white;" text="Entrez vos informations personnelles">
+                     <font>
+                        <Font name="Bell MT" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="32.0" layoutY="125.0" style="-fx-text-fill: white;" text="et commencez votre voyage avec nous.">
+                     <font>
+                        <Font name="Bell MT" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="83.0" layoutY="169.0" prefHeight="18.0" prefWidth="133.0" style="-fx-text-fill: white;" text="j'ai pas de compte ?">
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="logo11" fitHeight="65.0" fitWidth="186.0" layoutX="77.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <image>
+                        <Image url="@images/logo_2x1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="152.0" fitWidth="243.0" layoutX="28.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/laptop.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="loglayer2" layoutX="1.0" layoutY="1.0" prefHeight="500.0" prefWidth="600.0" styleClass="right-form" stylesheets="@loginstyle.css" visible="false">
+               <children>
+                  <TextField fx:id="email" layoutX="100.0" layoutY="255.0" onAction="#login" prefHeight="40.0" prefWidth="400.0" promptText="E-mail" style="-fx-padding: 0px 0px 0px 28px;" />
+                  <PasswordField fx:id="password" layoutX="100.0" layoutY="313.0" onAction="#login" prefHeight="40.0" prefWidth="400.0" promptText="Mot de passe" style="-fx-padding: 0px 0px 0px 28px;" />
+                  <Button fx:id="loginBtn" layoutX="101.0" layoutY="411.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="400.0" styleClass="login-btn" text="Se connecter">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="93.0" layoutY="356.0" mnemonicParsing="false" style="-fx-background-color: none; -fx-text-fill: red; -fx-cursor: hand;" text="Mot de passe oublié ?">
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="293.0" layoutY="198.0" style="-fx-text-fill: #76BA1B;" text="ou">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="f1" layoutX="101.0" layoutY="96.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="400.0" style="-fx-background-color: #3B5998; -fx-text-fill: white;" text="connexion avec facebook">
+                     <graphic>
+                        <FontAwesomeIconView fill="#efebeb" glyphName="FACEBOOK_F" />
+                     </graphic>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="g1" layoutX="101.0" layoutY="143.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="400.0" style="-fx-background-color: #DC4E41; -fx-text-fill: white;" text="connexion avec google">
+                     <graphic>
+                        <FontAwesomeIconView fill="#f2eeee" glyphName="GOOGLE_PLUS" />
+                     </graphic>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="close11" layoutX="357.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleCloseButton" styleClass="close" stylesheets="@loginstyle.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                     <graphic>
+                        <FontAwesomeIconView fx:id="closeBtn" fill="#1e1c1c" glyphName="CLOSE" onDragDetected="#handleCloseButton" selectionFill="#260d0d" size="1.2em" styleClass="close" />
+                     </graphic>
+                  </Button>
+                  <Label layoutX="244.0" layoutY="34.0" style="-fx-text-fill: #80c800;" text="connexion">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Line endX="99.0" endY="0.600006103515625" layoutX="192.0" layoutY="215.0" startX="-90.00001525878906" stroke="#76ba1b" />
+                  <Line endX="75.4000244140625" layoutX="421.0" layoutY="217.0" startX="-100.0" stroke="#76ba1b" />
+                  <FontAwesomeIconView glyphName="LOCK" layoutX="108.0" layoutY="337.0" />
+                  <FontAwesomeIconView glyphName="ENVELOPE" layoutX="106.0" layoutY="280.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="layer2" layoutX="1.0" layoutY="1.0" prefHeight="500.0" prefWidth="300.0" styleClass="left-form" stylesheets="@loginstyle.css">
+               <children>
+                  <Label layoutX="163.0" layoutY="452.0" style="-fx-text-fill: white;" text="©Ecotourism 2024" />
+                  <Button fx:id="btn2" layoutX="35.0" layoutY="212.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="30.0" prefWidth="230.0" styleClass="goto-signup" stylesheets="@loginstyle.css" text="se connecter" textFill="#262424">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="128.0" layoutY="92.0" style="-fx-text-fill: white;" text="Hello !">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="42.0" layoutY="120.0" style="-fx-text-fill: white;" text="Entrez vos informations personnelles">
+                     <font>
+                        <Font name="Bell MT" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="42.0" layoutY="149.0" style="-fx-text-fill: white;" text="et commencez votre voyage avec nous.">
+                     <font>
+                        <Font name="Bell MT" size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="close1" layoutX="8.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleCloseButton" styleClass="close" stylesheets="@loginstyle.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CLOSE" />
+                     </graphic>
+                  </Button>
+                  <Label layoutX="87.0" layoutY="183.0" text="J'ai déjà un compte ?" textFill="#f4efef">
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="65.0" fitWidth="186.0" layoutX="76.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <image>
+                        <Image url="@images/logo_2x1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="199.0" fitWidth="236.0" layoutX="32.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/laptop.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="layer1" layoutX="301.0" layoutY="1.0" prefHeight="500.0" prefWidth="600.0" styleClass="right-form" stylesheets="@loginstyle.css">
+               <children>
+                  <TextField fx:id="signEmail" layoutX="23.0" layoutY="189.0" onAction="#signup" prefHeight="35.0" prefWidth="250.0" promptText="E-mail" />
+                  <PasswordField fx:id="confirm_password" layoutX="23.0" layoutY="362.0" onAction="#signup" prefHeight="35.0" prefWidth="250.0" promptText="Confirmer Mot de passe" />
+                  <Button fx:id="signupBtn" layoutX="134.0" layoutY="449.0" mnemonicParsing="false" onAction="#signup" prefHeight="30.0" prefWidth="322.0" styleClass="login-btn" text="Créer mon compte">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="178.0" style="-fx-text-fill: #76BA1B;" text="Créer un compte">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="close" layoutX="343.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleCloseButton" styleClass="close" stylesheets="@loginstyle.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" />
+                  <TextField fx:id="nom" layoutX="24.0" layoutY="79.0" onAction="#signup" prefHeight="35.0" prefWidth="250.0" promptText="Nom" />
+                  <TextField fx:id="prenom" layoutX="24.0" layoutY="138.0" onAction="#signup" prefHeight="35.0" prefWidth="250.0" promptText="Prénom" />
+                  <Line endX="-100.0" endY="300.20001220703125" layoutX="396.0" layoutY="93.0" startX="-100.0" startY="-13.199996948242188" stroke="#76ba1b" />
+                  <Button fx:id="import_image" layoutX="395.0" layoutY="35.0" mnemonicParsing="false" onAction="#InsertImage" prefHeight="72.0" prefWidth="99.0" style="-fx-background-color: transparent;" styleClass="uploadBtn" stylesheets="@loginstyle.css">
+                     <graphic>
+                        <Circle fx:id="user_image" fill="#2197ff00" radius="40.0" stroke="#76ba1b" strokeType="INSIDE">
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="white-bg" />
+                           </styleClass>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Circle>
+                     </graphic></Button>
+                  <TextField fx:id="telephone" layoutX="24.0" layoutY="245.0" onAction="#signup" prefHeight="35.0" prefWidth="250.0" promptText="Téléphone" />
+                  <TextField fx:id="ville" layoutX="323.0" layoutY="245.0" onAction="#signup" prefHeight="35.0" prefWidth="250.0" promptText="Ville" />
+                  <PasswordField fx:id="password" layoutX="24.0" layoutY="304.0" onAction="#signup" prefHeight="35.0" prefWidth="250.0" promptText="Mot de passe" />
+                  <ComboBox fx:id="pays" layoutX="323.0" layoutY="192.0" prefHeight="35.0" prefWidth="250.0" />
+                  <TextField fx:id="zipcode" layoutX="323.0" layoutY="304.0" onAction="#signup" prefHeight="35.0" prefWidth="250.0" promptText="Code postal" />
+                  <TextField fx:id="adresse" layoutX="323.0" layoutY="362.0" onAction="#signup" prefHeight="35.0" prefWidth="250.0" promptText="Adresse" />
+                  <DatePicker fx:id="date_naissance" layoutX="322.0" layoutY="138.0" prefHeight="35.0" prefWidth="250.0" promptText="Date de Naissance" />
+                  <Label fx:id="date_error" layoutX="324.0" layoutY="172.0" textFill="#f70606">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="zipcode_error" layoutX="326.0" layoutY="343.0" textFill="#f70606">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="address_error" layoutX="324.0" layoutY="398.0" textFill="#f70606">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="image_error" layoutX="431.0" layoutY="121.0" textFill="#f70606">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="town_error" layoutX="326.0" layoutY="286.0" textFill="#f70606">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="country_error" layoutX="324.0" layoutY="227.0" textFill="#f70606">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="signup_error" layoutX="282.0" layoutY="426.0" textFill="#f70606">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="firstName_error" layoutX="23.0" layoutY="115.0" textFill="#f70606">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lastName_error" layoutX="23.0" layoutY="172.0" textFill="#f70606">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="email_error" layoutX="23.0" layoutY="227.0" textFill="#f70606">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="phone_error" layoutX="25.0" layoutY="283.0" textFill="#f70606">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="password_error" layoutX="23.0" layoutY="343.0" textFill="#f70606">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="confirmPassword_error" layoutX="25.0" layoutY="404.0" textFill="#f70606">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="passwordLabel1" layoutX="24.0" layoutY="304.0" onAction="#showPassword" prefHeight="35.0" prefWidth="250.0" promptText="Mot de passe" visible="false" />
+                  <Button fx:id="show_password" layoutX="239.0" layoutY="310.0" mnemonicParsing="false" onAction="#showPassword" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <FontAwesomeIconView fx:id="eyeIcon1" glyphName="EYE_SLASH" size="1.5em" />
+                     </graphic>
+                  </Button>
+                  <TextField fx:id="passwordLabel2" layoutX="23.0" layoutY="362.0" onAction="#showConfirmPassword" prefHeight="35.0" prefWidth="250.0" promptText="Confirmer Mot de passe" visible="false" />
+                  <Button fx:id="show_confirmPassword" layoutX="237.0" layoutY="367.0" mnemonicParsing="false" onAction="#showConfirmPassword" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <FontAwesomeIconView fx:id="eyeIcon2" glyphName="EYE_SLASH" size="1.5em" />
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
