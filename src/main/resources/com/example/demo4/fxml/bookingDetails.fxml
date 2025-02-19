@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="15" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.BookingDetailsController"
+      style="-fx-padding: 20; -fx-background-color: #f9f9f9;">
+    <!-- Title -->
+    <Label text="Booking Details" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+    <!-- Booking ID -->
+    <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #e6f7ff; -fx-border-radius: 5; -fx-background-radius: 5;">
+        <Label text="Booking ID:" style="-fx-font-weight: bold;" />
+        <TextField fx:id="bookingIdField" editable="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+    </HBox>
+
+    <!-- User Name -->
+    <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #fff3cd; -fx-border-radius: 5; -fx-background-radius: 5;">
+        <Label text="User Name:" style="-fx-font-weight: bold;" />
+        <TextField fx:id="userNameField" editable="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+    </HBox>
+
+    <!-- Flight Details -->
+    <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #d4edda; -fx-border-radius: 5; -fx-background-radius: 5;">
+        <Label text="Flight ID:" style="-fx-font-weight: bold;" />
+        <TextField fx:id="flightIdField" editable="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+    </HBox>
+    <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #d4edda; -fx-border-radius: 5; -fx-background-radius: 5;">
+        <Label text="Airlines:" style="-fx-font-weight: bold;" />
+        <TextField fx:id="airlinesField" editable="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+    </HBox>
+    <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #d4edda; -fx-border-radius: 5; -fx-background-radius: 5;">
+        <Label text="Flight Price:" style="-fx-font-weight: bold;" />
+        <TextField fx:id="flightPriceField" editable="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+    </HBox>
+    <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #d4edda; -fx-border-radius: 5; -fx-background-radius: 5;">
+        <Label text="Departure Time:" style="-fx-font-weight: bold;" />
+        <TextField fx:id="departureTimeField" editable="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+    </HBox>
+
+    <!-- Hotel Details -->
+    <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #fff3cd; -fx-border-radius: 5; -fx-background-radius: 5;">
+        <Label text="Hotel ID:" style="-fx-font-weight: bold;" />
+        <TextField fx:id="hotelIdField" editable="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+    </HBox>
+
+    <!-- Transport Details -->
+    <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #f8d7da; -fx-border-radius: 5; -fx-background-radius: 5;">
+        <Label text="Transport ID:" style="-fx-font-weight: bold;" />
+        <TextField fx:id="transportIdField" editable="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+    </HBox>
+
+    <!-- Conference Location Details -->
+    <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #d4edda; -fx-border-radius: 5; -fx-background-radius: 5;">
+        <Label text="Conference Location ID:" style="-fx-font-weight: bold;" />
+        <TextField fx:id="conferenceLocationIdField" editable="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+    </HBox>
+
+    <!-- Action Buttons -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Confirm" onAction="#confirmBooking" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 20; -fx-border-radius: 5; -fx-background-radius: 5;" />
+        <Button text="Not Confirm" onAction="#notConfirmBooking" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 20; -fx-border-radius: 5; -fx-background-radius: 5;" />
+    </HBox>
+</VBox>
