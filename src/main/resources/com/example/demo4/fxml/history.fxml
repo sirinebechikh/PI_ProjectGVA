@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import java.net.URL?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<VBox spacing="20" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.controllers.HistoryController"
+      style="-fx-background-color: #f5f6fa; -fx-padding: 20;">
+
+
+    <Label text="Booking History"
+           style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;"
+           />
+
+    <AnchorPane>
+        <TableView fx:id="bookingsTable" prefHeight="400" onMouseClicked="#handleRowClick"
+                   style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+            <columns>
+                <!-- Existing Columns -->
+                <TableColumn text="Booking ID" fx:id="bookingIdColumn" prefWidth="80"/>
+                <TableColumn text="User" fx:id="userNameColumn" prefWidth="120"/>
+                <TableColumn text="Status" fx:id="statusColumn" prefWidth="100"/>
+                <TableColumn text="Airlines" fx:id="airlinesColumn" prefWidth="150"/>
+                <TableColumn text="departure Time" fx:id="departureTimeColumn" prefWidth="150"/>
+                <TableColumn text="Flight Price" fx:id="flightPriceColumn" prefWidth="100"/>
+
+                <!-- New Hotel Columns -->
+                <TableColumn text="Hotel" fx:id="hotelNameColumn" prefWidth="150"/>
+                <TableColumn text="Hotel Location" fx:id="hotelLocationColumn" prefWidth="150"/>
+                <TableColumn text="Conference" fx:id="conferenceNameColumn" prefWidth="120"/>
+
+                <!-- Conference Columns -->
+                <TableColumn text="Transport Type" fx:id="transportTypeColumn" prefWidth="150"/>
+
+
+                <!-- Transport Columns -->
+                <TableColumn text="priceTotal" fx:id="priceTotalColumn" prefWidth="120"/>
+
+
+
+
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+            <stylesheets>
+                <URL value="@/css/CSS.css" />
+            </stylesheets>
+        </TableView>
+    </AnchorPane>
+    <HBox spacing="10" style="-fx-alignment: center-left;">
+        <Label text="Booking History"
+               style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;"/>
+        <Button text="Back to Booking" onAction="#navigateToDestination"
+                style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-padding: 5 15;"/>
+    </HBox>
+</VBox>
