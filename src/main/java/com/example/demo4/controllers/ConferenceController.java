@@ -1,0 +1,125 @@
+package org.example.controllers;
+
+import com.sun.javafx.UnmodifiableArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.geometry.Pos;
+import javafx.stage.Stage;
+import org.example.dao.ConferenceLocationDAO;
+import org.example.models.ConferenceLocation;
+import org.example.models.Flight;
+import org.example.models.Hotel;
+
+import java.io.IOException;
+import java.util.List;
+
+public class ConferenceController {
+
+    @FXML
+    private ListView<ConferenceLocation> conferenceList;
+    private Flight selectedFlight;
+    private Hotel selectedHotel;
+    private List<ConferenceLocation> locations;
+    private List<Hotel> hotels;  // Should be populated when setting selected flight/hotel
+
+    public void setSelectedFlightAndHotel(Flight selectedFlight, Hotel selectedHotel) {
+        this.selectedFlight = selectedFlight;
+        this.selectedHotel = selectedHotel;  // Store the Hotel object directly
+        ConferenceLocationDAO conferenceLocationDAO = new ConferenceLocationDAO();
+        locations = conferenceLocationDAO.findByLocation(selectedFlight.getDestination());
+
+        ObservableList<ConferenceLocation> locationItems = FXCollections.observableArrayList(locations);
+        conferenceList.setItems(locationItems);
+
+        conferenceList.setCellFactory(lv -> new ListCell<ConferenceLocation>() {
+            @Override
+            protected void updateItem(ConferenceLocation location, boolean empty) {
+                super.updateItem(location, empty);
+                if (empty || location == null) {
+                    setGraphic(null);
+                } else {
+                    BorderPane cellPane = new BorderPane();
+                    cellPane.setPrefSize(240, 220);
+                    cellPane.setStyle("-fx-border-color: #BDBDBD; -fx-border-radius: 5; -fx-padding: 15;");
+
+                    // Left Section (Location Image + Name)
+                    VBox leftSection = new VBox(5);
+                    leftSection.setAlignment(Pos.CENTER_LEFT);
+                    try {
+                        Image image = new Image(getClass().getResourceAsStream(
+                                "/images/" + location.getName() + ".png"
+                        ));
+                        ImageView imageView = new ImageView(image);
+                        imageView.setFitWidth(100);
+                        imageView.setPreserveRatio(true);
+
+                        Label nameLabel = new Label(location.getName());
+                        nameLabel.setStyle("-fx-font-size: 14; -fx-font-weight: bold;");
+
+                        leftSection.getChildren().addAll(imageView, nameLabel);
+                    } catch (Exception e) {
+                        leftSection.getChildren().add(new Label(location.getName()));
+                    }
+                    cellPane.setLeft(leftSection);
+
+                    // Right Section (Price/Day)
+                    Label priceLabel = new Label(String.format("$%.2f/day", location.getPricePerDay()));
+                    priceLabel.setStyle("-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #2196F3;");
+                    BorderPane.setAlignment(priceLabel, Pos.CENTER_RIGHT);
+                    cellPane.setRight(priceLabel);
+
+                    // Center (Address + Capacity)
+                    VBox centerBox = new VBox(5);
+                    centerBox.setAlignment(Pos.CENTER);
+
+                    Label addressLabel = new Label(location.getAddress());
+                    Label capacityLabel = new Label("Capacity: " + location.getCapacity() + " people");
+
+                    addressLabel.setStyle("-fx-font-size: 16; -fx-font-weight: bold;");
+                    capacityLabel.setStyle("-fx-font-size: 14; -fx-text-fill: #757575;");
+
+                    centerBox.getChildren().addAll(addressLabel, capacityLabel);
+                    cellPane.setCenter(centerBox);
+
+                    setGraphic(cellPane);
+                }
+            }
+        });
+    }
+
+
+    @FXML
+    private void nextPage() {
+        int selectedIndex = conferenceList.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/transport.fxml"));
+                Parent root = loader.load();
+
+                TransportController transportController = loader.getController();
+                transportController.setSelectedData(
+                        selectedFlight,
+                        selectedHotel,          // Use the stored Hotel object
+                        locations.get(selectedIndex)  // ConferenceLocation object
+                );
+
+                Stage stage = (Stage) conferenceList.getScene().getWindow();
+                stage.setScene(new Scene(root, 800, 600));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
