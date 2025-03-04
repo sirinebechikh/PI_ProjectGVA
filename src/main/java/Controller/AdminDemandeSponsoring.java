@@ -1,7 +1,7 @@
-package Controller;
+ package org.example.controllers;
 
-import Entities.DemandeSponsoring;
-import Service.DemandeSponsoringService;
+import org.example.models.DemandeSponsoring;
+import org.example.dao.DemandeSponsoringService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
