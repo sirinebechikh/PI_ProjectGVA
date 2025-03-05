@@ -3,22 +3,18 @@
  * To change this temreclamatione file, choose Tools | Temreclamationes
  * and open the temreclamatione in the editor.
  */
-package com.example.demo4.services;
+package com.example.demo4.Services;
 
-import com.example.demo4.entities.reclamation;
-import com.example.demo4.entities.reponse;
-import com.example.demo4.entities.User;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.example.demo4.Entities.User;
+import com.example.demo4.Entities.reclamation;
+import com.example.demo4.Entities.reponse;
+import com.example.demo4.db.MyDB;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import com.example.demo4.utils.MyDB;
 
 //**************//
 
@@ -41,7 +37,7 @@ public class reponseService {
     public void ajouterreponse(reponse p) {
         User U = new User();
         reclamationService es = new reclamationService();
-        String requete = "INSERT INTO `reponse` (`name` ,`commentaire`,`fullname` ) VALUES(?,?,?) ;";
+        String requete = "INSERT INTO `reponse` (`name` ,`commentaire`,`fullname` , `rating`) VALUES(?,?,?,?) ;";
 
         try {
             reclamation tempev = es.FetchOneevv(p.getName());
@@ -55,12 +51,11 @@ public class reponseService {
             pst = (PreparedStatement) cnx.prepareStatement(requete);
 
             pst.setString(1, p.getName());
-
             pst.setString(2, p.getCommentaire());
             pst.setString(3, p.getFullname());
+            pst.setDouble(4, p.getRating());
 
             pst.executeUpdate();
-          
 
             System.out.println("reponse with id ev = " + p.getName() + " is added successfully");
 
@@ -93,8 +88,6 @@ public class reponseService {
         return particip;
     }
     public List<reponse> recupererComment() throws SQLException {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Temreclamationes.
-        reponse dernierCommentaire = null;
         List<reponse> particip = new ArrayList<>();
         String s = "select * from reponse";
         Statement st = cnx.createStatement();
@@ -102,25 +95,16 @@ public class reponseService {
         while (rs.next()) {
             reponse pa = new reponse();
             pa.setId_reponse(rs.getInt("id_reponse"));
-
             pa.setName(rs.getString("name"));
-
             pa.setCommentaire(rs.getString("commentaire"));
             pa.setFullname(rs.getString("fullname"));
+            pa.setRating(rs.getDouble("rating")); // Assurez-vous de récupérer le rating
             particip.add(pa);
-
         }
         return particip;
     }
 
-    public void supprimerreponse(reponse p) throws SQLException {
-        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Temreclamationes.
-        String req = "delete from reponse where id_reponse  = ?";
-        PreparedStatement ps = cnx.prepareStatement(req);
-        ps.setInt(1, p.getId_reponse());
-        ps.executeUpdate();
-        System.out.println("reponse with id= " + p.getId_reponse() + "  is deleted successfully");
-    }
+
 
     public reponse FetchOneRes(int id) throws SQLException {
         reponse r = new reponse();
@@ -163,41 +147,29 @@ public class reponseService {
             System.out.println("error in delete reponse " + ex.getMessage());
         }
     }
-    
+
     public void modifierreponse(reponse p) throws SQLException {
-        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Temreclamationes.
-        String req = "UPDATE reponse SET name = ?,commentaire = ?,fullname = ? where id_reponse = ?";
+        String req = "UPDATE reponse SET name = ?, commentaire = ?, fullname = ? where id_reponse = ?";
         PreparedStatement ps = cnx.prepareStatement(req);
 
         ps.setString(1, p.getName());
-
         ps.setString(2, p.getCommentaire());
         ps.setString(3, p.getFullname());
-        ps.setInt(4, p.getId_reponse());
 
+        ps.setInt(4, p.getId_reponse());
 
         ps.executeUpdate();
     }
-    public void ajoutercomment(reponse p) throws SQLException {
-        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Temreclamationes.
-
-        String req = "INSERT INTO `reponse` (`name`,`commentaire`,`fullname`) "
-                + "VALUES (?,?,?,?);";
-        try {
-            pst = (PreparedStatement) cnx.prepareStatement(req);
-
-            pst.setString(1, p.getName());
-
-            pst.setString(2, p.getCommentaire());
-            pst.setString(3, p.getFullname());
-            pst.setInt(4, p.getId_reponse());
+    public void modifierreponseFront(reponse p) throws SQLException {
+        String req = "UPDATE reponse SET rating = ? where id_reponse = ?";
+        PreparedStatement ps = cnx.prepareStatement(req);
 
 
-            pst.executeUpdate();
-            System.out.println("ev " + p.getFullname() + " added successfully");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+        ps.setDouble(1, p.getRating());
+        ps.setInt(2, p.getId_reponse());
+
+        ps.executeUpdate();
     }
+
 
 }
