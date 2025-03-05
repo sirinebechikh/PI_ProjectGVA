@@ -3,7 +3,9 @@
  * To change this temreclamatione file, choose Tools | Temreclamationes
  * and open the temreclamatione in the editor.
  */
-package com.example.demo4.services;
+package com.example.demo4.Services;
+
+import com.example.demo4.Entities.reclamation;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -17,6 +19,9 @@ public interface IreclamationService<T> {
        public void ajouterreclamation(T t) throws SQLException;
     public void modifierreclamation(T t) throws SQLException;
     public void supprimerreclamation(T t) throws SQLException;
+
+    List<reclamation> recupererreclamation(int id_user) throws SQLException;
+
     public List<T> recupererreclamation() throws SQLException;
     
 }
