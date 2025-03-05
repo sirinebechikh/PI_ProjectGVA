@@ -3,7 +3,7 @@
  * To change this temreclamatione file, choose Tools | Temreclamationes
  * and open the temreclamatione in the editor.
  */
-package com.example.demo4.entities;
+package com.example.demo4.Entities;
 
 import java.sql.Date;
 
@@ -13,19 +13,19 @@ import java.sql.Date;
  */
 public class reclamation {
 
-   
-        private int id_reclamation;
+
+    private int id_reclamation , id_user;
 
 
 
-    private String name,image,commentaire;
+    private String name,image,commentaire,statut,email;
     private Date updated;
 
 
     public reclamation() {
     }
 
-    public reclamation(int id_reclamation, String name, String image, String commentaire, Date updated) {
+    public reclamation(int id_reclamation, String name, String image, String commentaire, Date updated, String statut, String email,int id_user) {
         this.id_reclamation = id_reclamation;
 
 
@@ -34,23 +34,13 @@ public class reclamation {
 
         this.image = image;
         this.commentaire = commentaire;
+        this.email = email;
         this.updated = updated;
+        this.statut = statut;
+        this.id_user = id_user;
 
     }
-    public reclamation(String name, String image, String commentaire, Date updated ) {
-
-
-
-        this.name = name;
-
-        this.image = image;
-        this.commentaire = commentaire;
-        this.updated = updated;
-
-    }
-    
-    
-     public reclamation(int id_reclamation, String name, String image, String commentaire) {
+    public reclamation(int id_reclamation, String name, String image, String commentaire, Date updated, String statut, String email) {
         this.id_reclamation = id_reclamation;
 
 
@@ -59,11 +49,61 @@ public class reclamation {
 
         this.image = image;
         this.commentaire = commentaire;
-        
+        this.email = email;
+        this.updated = updated;
+        this.statut = statut;
+
     }
-    
-    
-     //****************** getters ****************
+    public reclamation(String name, String image, String commentaire, Date updated, String statut, String email, int id_user ) {
+
+
+
+        this.name = name;
+        this.email = email;
+        this.image = image;
+        this.commentaire = commentaire;
+        this.updated = updated;
+        this.statut = statut;
+        this.id_user = id_user;
+
+    }
+    public reclamation(String name, String image, String commentaire, Date updated, String statut, String email) {
+
+
+
+        this.name = name;
+        this.email = email;
+        this.image = image;
+        this.commentaire = commentaire;
+        this.updated = updated;
+        this.statut = statut;
+
+    }
+
+
+    public reclamation(int id_reclamation, String name, String image, String commentaire, String statut, String email) {
+        this.id_reclamation = id_reclamation;
+
+
+
+        this.name = name;
+        this.email = email;
+        this.image = image;
+        this.commentaire = commentaire;
+        this.statut = statut;
+
+    }
+    // Getters et Setters
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
+
+    //****************** getters ****************
 
     public int getId_reclamation() {
         return id_reclamation;
@@ -87,8 +127,8 @@ public class reclamation {
         return updated;
     }
 
-    
-    
+
+
     //****************** setters ****************
 
     public void setId_reclamation(int id_reclamation) {
@@ -112,20 +152,30 @@ public class reclamation {
     public void setUpdated(Date updated) {
         this.updated = updated;
     }
+    public String getStatut() {
+        return statut;
+    }
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
 
 
-
-
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
 
     @Override
     public String toString() {
-        return "reclamation{" + "id_reclamation=" + id_reclamation+  ", name=" + name + ", image=" + image + ", commentaire=" + commentaire + ", updated=" + updated + '}';
+        return "reclamation{" + "id_reclamation=" + id_reclamation+  ", name=" + name + ", image=" + image + ", commentaire=" + commentaire + ", updated=" + updated + ", statut=" + statut +  ", email=" + email + '}';
     }
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
 }
