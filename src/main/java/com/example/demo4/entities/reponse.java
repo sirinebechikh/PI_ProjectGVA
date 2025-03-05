@@ -3,20 +3,20 @@
  * To change this temreclamatione file, choose Tools | Temreclamationes
  * and open the temreclamatione in the editor.
  */
-package com.example.demo4.entities;
+package com.example.demo4.Entities;
 
 /**
  *
  * @author asus
  */
 public class reponse extends reclamation {
-    private int id_reponse;        
+    private int id_reponse;
 
-private int id_user;
-private String commentaire,fullname;
-public String name;
-public reclamation reclamation;
-
+    private int id_user;
+    private String commentaire,fullname;
+    public String name;
+    public reclamation reclamation;
+    private double rating;
     public reponse() {
     }
 
@@ -35,7 +35,13 @@ public reclamation reclamation;
 
 
     }
+    public reponse( String name, Double rating) {
 
+
+        this.name = name;
+        this.rating = rating;
+
+    }
 
     public reponse(int id_reponse, String name, reclamation reclamation, String commentaire, String fullname) {
         this.id_reponse = id_reponse;
@@ -46,7 +52,7 @@ public reclamation reclamation;
         this.commentaire = commentaire;
         this.fullname = fullname;
     }
-    public reponse(  String name, String commentaire, String fullname) {
+    public reponse(  String name, String commentaire, String fullname, Double rating) {
 
 
 
@@ -54,6 +60,7 @@ public reclamation reclamation;
 
         this.commentaire = commentaire;
         this.fullname = fullname;
+        this.rating = rating;
     }
 
     public int getId_reponse() {
@@ -98,14 +105,20 @@ public reclamation reclamation;
     public void setReclamation(reclamation reclamation) {
         this.reclamation = reclamation;
     }
+    public double getRating() {
+        return rating;
+    }
 
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
     @Override
     public String toString() {
         return "reponse{" + "id_reponse=" + id_reponse +  ", name=" + name +  ", commentaire=" + commentaire +  ", fullname=" + fullname + '}';
     }
-    
-    
-    
+
+
+
 
 
 
