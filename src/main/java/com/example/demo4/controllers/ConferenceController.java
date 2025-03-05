@@ -1,6 +1,5 @@
 package org.example.controllers;
 
-import com.sun.javafx.UnmodifiableArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,28 +16,44 @@ import javafx.scene.layout.VBox;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import org.example.dao.ConferenceLocationDAO;
-import org.example.models.ConferenceLocation;
-import org.example.models.Flight;
-import org.example.models.Hotel;
+import org.example.models.*;
 
 import java.io.IOException;
 import java.util.List;
 
 public class ConferenceController {
-
     @FXML
     private ListView<ConferenceLocation> conferenceList;
+
     private Flight selectedFlight;
     private Hotel selectedHotel;
+    private Evenement selectedEventData; // To store event data
     private List<ConferenceLocation> locations;
-    private List<Hotel> hotels;  // Should be populated when setting selected flight/hotel
+    private Booking selectedBooking;
 
-    public void setSelectedFlightAndHotel(Flight selectedFlight, Hotel selectedHotel) {
+    /**
+     * Sets the selected flight, hotel, and event data, and populates the conference list based on the flight's destination.
+     */
+    public void setSelectedFlightHotelAndEventData(Flight selectedFlight, Hotel selectedHotel, Evenement eventData) {
         this.selectedFlight = selectedFlight;
-        this.selectedHotel = selectedHotel;  // Store the Hotel object directly
-        ConferenceLocationDAO conferenceLocationDAO = new ConferenceLocationDAO();
-        locations = conferenceLocationDAO.findByLocation(selectedFlight.getDestination());
+        this.selectedHotel = selectedHotel;
+        this.selectedEventData = eventData;
 
+        // Fetch conference locations based on the flight's destination
+        ConferenceLocationDAO conferenceLocationDAO = new ConferenceLocationDAO();
+        try {
+            locations = conferenceLocationDAO.findByLocation(selectedFlight.getDestination());
+            populateConferenceList(locations);
+        } catch (Exception e) {
+            showError("Database Error", "Failed to fetch conference locations for the selected destination.");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Populates the conference list with the given locations.
+     */
+    private void populateConferenceList(List<ConferenceLocation> locations) {
         ObservableList<ConferenceLocation> locationItems = FXCollections.observableArrayList(locations);
         conferenceList.setItems(locationItems);
 
@@ -49,6 +64,7 @@ public class ConferenceController {
                 if (empty || location == null) {
                     setGraphic(null);
                 } else {
+                    // Create square cell layout
                     BorderPane cellPane = new BorderPane();
                     cellPane.setPrefSize(240, 220);
                     cellPane.setStyle("-fx-border-color: #BDBDBD; -fx-border-radius: 5; -fx-padding: 15;");
@@ -82,13 +98,10 @@ public class ConferenceController {
                     // Center (Address + Capacity)
                     VBox centerBox = new VBox(5);
                     centerBox.setAlignment(Pos.CENTER);
-
                     Label addressLabel = new Label(location.getAddress());
                     Label capacityLabel = new Label("Capacity: " + location.getCapacity() + " people");
-
                     addressLabel.setStyle("-fx-font-size: 16; -fx-font-weight: bold;");
                     capacityLabel.setStyle("-fx-font-size: 14; -fx-text-fill: #757575;");
-
                     centerBox.getChildren().addAll(addressLabel, capacityLabel);
                     cellPane.setCenter(centerBox);
 
@@ -98,7 +111,9 @@ public class ConferenceController {
         });
     }
 
-
+    /**
+     * Handles navigation to the transport selection screen.
+     */
     @FXML
     private void nextPage() {
         int selectedIndex = conferenceList.getSelectionModel().getSelectedIndex();
@@ -106,20 +121,49 @@ public class ConferenceController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/transport.fxml"));
                 Parent root = loader.load();
-
                 TransportController transportController = loader.getController();
+
+                // Pass the selected flight, hotel, conference location, and event data to the TransportController
                 transportController.setSelectedData(
                         selectedFlight,
-                        selectedHotel,          // Use the stored Hotel object
-                        locations.get(selectedIndex)  // ConferenceLocation object
+                        selectedHotel,
+                        locations.get(selectedIndex),
+                        selectedEventData
                 );
 
                 Stage stage = (Stage) conferenceList.getScene().getWindow();
-                stage.setScene(new Scene(root, 800, 600));
+                stage.setScene(new Scene(root, 934, 720));// Match window size
                 stage.show();
             } catch (IOException e) {
+                showError("Navigation Error", "Failed to load the transport selection screen.");
                 e.printStackTrace();
             }
+        } else {
+            showError("Selection Error", "Please select a conference location before proceeding.");
+        }
+    }
+
+    /**
+     * Displays an error alert to the user.
+     */
+    private void showError(String title, String content) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+    public void setSelectedBookingData(Booking booking) {
+        this.selectedBooking = booking;
+
+        // Fetch conference locations based on the booking's destination
+        ConferenceLocationDAO conferenceDAO = new ConferenceLocationDAO();
+        try {
+            locations = conferenceDAO.findByLocation(booking.getHotelLocation());
+            populateConferenceList(locations);
+        } catch (Exception e) {
+            showError("Database Error", "Failed to fetch conference locations for the selected booking.");
+            e.printStackTrace();
         }
     }
 }
