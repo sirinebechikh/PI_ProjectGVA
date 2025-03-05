@@ -64,6 +64,7 @@ import org.example.models.Transport;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TransportDAO implements ITransportDAO {
 
@@ -112,5 +113,31 @@ public class TransportDAO implements ITransportDAO {
             e.printStackTrace();
         }
         return null;
+    }
+    private Transport fetchTransportFromRecommendation(String recommendations) {
+        // Example: Extract transport details from recommendations
+        String type = extractTransportType(recommendations); // Implement this method
+
+        // Fetch transports by type
+        List<Transport> transports = new TransportDAO().findAll();
+        if (!transports.isEmpty()) {
+            transports = transports.stream()
+                    .filter(transport -> transport.getType().equalsIgnoreCase(type))
+                    .collect(Collectors.toList());
+            if (!transports.isEmpty()) {
+                return transports.get(0); // Return the first matching transport
+            }
+        }
+        return null; // No matching transport found
+    }
+
+    // Helper method to extract transport type from recommendations
+    private String extractTransportType(String recommendations) {
+        // Example: Parse recommendations to extract transport type
+        // This is a placeholder implementation. Replace with actual parsing logic.
+        if (recommendations.contains("transport by")) {
+            return recommendations.split("transport by")[1].split(" ")[1];
+        }
+        return "Unknown Transport";
     }
 }

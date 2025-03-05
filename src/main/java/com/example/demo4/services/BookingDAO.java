@@ -10,4 +10,5 @@ public interface BookingDAO {
     void save(Booking booking);
     void deleteById(int id);
     void updateStatus(int bookingId, String status); // New method to update status
+    void updateBooking(Booking booking); // Added updateBooking method to interface
 }

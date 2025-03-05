@@ -83,4 +83,25 @@ public class ConferenceLocationDAO implements IConferenceLocationDAO {
         }
         return locations;
     }
+    private ConferenceLocation fetchConferenceFromRecommendation(String recommendations) {
+        // Example: Extract conference location details from recommendations
+        String location = extractConferenceLocation(recommendations); // Implement this method
+
+        // Fetch conference locations by address
+        List<ConferenceLocation> locations = new ConferenceLocationDAO().findByLocation(location);
+        if (!locations.isEmpty()) {
+            return locations.get(0); // Return the first matching conference location
+        }
+        return null; // No matching conference location found
+    }
+
+    // Helper method to extract conference location from recommendations
+    private String extractConferenceLocation(String recommendations) {
+        // Example: Parse recommendations to extract location
+        // This is a placeholder implementation. Replace with actual parsing logic.
+        if (recommendations.contains("conference at")) {
+            return recommendations.split("conference at")[1].split(" ")[1];
+        }
+        return "Unknown Location";
+    }
 }
