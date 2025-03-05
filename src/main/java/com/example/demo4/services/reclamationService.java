@@ -3,32 +3,23 @@
  * To change this temreclamatione file, choose Tools | Temreclamationes
  * and open the temreclamatione in the editor.
  */
-package com.example.demo4.services;
+package com.example.demo4.Services;
 
 //import com.sun.javafx.iio.ImageStorage.ImageType;
-import com.example.demo4.entities.reclamation;
 
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-
-import com.example.demo4.utils.MyDB;
+import com.example.demo4.Entities.reclamation;
+import com.example.demo4.db.MyDB;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
 
-//**************//
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.io.*;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-
 
 /**
  *
@@ -47,40 +38,52 @@ public class reclamationService implements IreclamationService<reclamation> {
 
     @Override
     public void ajouterreclamation(reclamation e) throws SQLException {
-
-        String requete = "INSERT INTO `reclamation` (`name`,`image`,`commentaire`,`updated`) "
-                + "VALUES (?,?,?,?);";
+        String requete = "INSERT INTO `reclamation` (`name`, `image`, `commentaire`, `updated`, `statut`, `email`, `id_user`) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?);";
         try {
-            pst = (PreparedStatement) cnx.prepareStatement(requete);
+            pst = cnx.prepareStatement(requete);
             pst.setString(1, e.getName());
-
             pst.setString(2, e.getImage());
             pst.setString(3, e.getCommentaire());
             pst.setDate(4, e.getUpdated());
-
-
+            pst.setString(5, e.getStatut());
+            pst.setString(6, e.getEmail());
+            pst.setInt(7, e.getId_user()); // Ajout de l'id_user
             pst.executeUpdate();
-            System.out.println("ev " + e.getName() + " added successfully");
+            System.out.println("Réclamation ajoutée avec succès");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
     }
 
     @Override
     public void modifierreclamation(reclamation e) throws SQLException {
         // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Temreclamationes.
-        String req = "UPDATE reclamation SET name = ?,image=?,commentaire = ?,updated=? where id_reclamation = ?";
+        String req = "UPDATE reclamation SET name = ?,image=?,commentaire = ?,updated=?,statut = ?,email = ? where id_reclamation = ?";
         PreparedStatement ps = cnx.prepareStatement(req);
         ps.setString(1, e.getName());
 
         ps.setString(2, e.getImage());
         ps.setString(3, e.getCommentaire());
         ps.setDate(4, e.getUpdated());
+        ps.setString(5, e.getStatut());
+        ps.setString(6, e.getEmail());
 
 
-        ps.setInt(5, e.getId_reclamation());
+        ps.setInt(7, e.getId_reclamation());
         ps.executeUpdate();
+    }
+    public void updateReclamationStatus(int idReclamation, String newStatus) throws SQLException {
+        String query = "UPDATE reclamation SET statut = ? WHERE id_reclamation = ?";
+        try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
+            pstmt.setString(1, newStatus); // Définir le nouveau statut
+            pstmt.setInt(2, idReclamation); // Définir l'ID de la réclamation
+            pstmt.executeUpdate(); // Exécuter la mise à jour
+            System.out.println("Statut de la réclamation mis à jour avec succès.");
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la mise à jour du statut de la réclamation : " + ex.getMessage());
+            throw ex; // Propager l'exception pour la gestion des erreurs
+        }
     }
 
     @Override
@@ -98,6 +101,31 @@ public class reclamationService implements IreclamationService<reclamation> {
 
 
     @Override
+    public List<reclamation> recupererreclamation(int id_user) throws SQLException {
+        List<reclamation> reclamations = new ArrayList<>();
+        String s = "SELECT * FROM reclamation WHERE id_user = ?";
+        try {
+            pst = cnx.prepareStatement(s);
+            pst.setInt(1, id_user);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                reclamation e = new reclamation();
+                e.setId_reclamation(rs.getInt("id_reclamation"));
+                e.setName(rs.getString("name"));
+                e.setImage(rs.getString("image"));
+                e.setCommentaire(rs.getString("commentaire"));
+                e.setUpdated(rs.getDate("updated"));
+                e.setStatut(rs.getString("statut"));
+                e.setEmail(rs.getString("email"));
+                e.setId_user(rs.getInt("id_user"));
+                reclamations.add(e);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return reclamations;
+    }
+    @Override
     public List<reclamation> recupererreclamation() throws SQLException {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Temreclamationes.
 
@@ -111,7 +139,9 @@ public class reclamationService implements IreclamationService<reclamation> {
 
             e.setImage(rs.getString("Image"));
             e.setCommentaire(rs.getString("commentaire"));
+            e.setEmail(rs.getString("email"));
             e.setUpdated(rs.getDate("updated"));
+            e.setStatut(rs.getString("statut"));
 
 
 
@@ -123,60 +153,38 @@ public class reclamationService implements IreclamationService<reclamation> {
         return reclamation;
     }
 
-    public reclamation FetchOneev(int id) {
-        reclamation ev = new reclamation();
-        String requete = "SELECT * FROM `reclamation` where id_reclamation = " + id;
 
-        try {
-            ste = (Statement) cnx.createStatement();
-            ResultSet rs = ste.executeQuery(requete);
 
-            while (rs.next()) {
-
-                ev = new reclamation(rs.getInt("id_reclamation"), rs.getString("name"), rs.getString("image"), rs.getString("commentaire"), rs.getDate("updated"));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(reclamationService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return ev;
-    }
     public reclamation FetchOneevv(String name) {
-        reclamation ev = new reclamation();
-        String requete = "SELECT * FROM `reclamation` where name = " + name;
+        reclamation ev = null; // Initialiser à null pour gérer les cas où aucune réclamation n'est trouvée
+        String requete = "SELECT * FROM reclamation WHERE name = ?"; // Utiliser un paramètre
 
         try {
-            ste = (Statement) cnx.createStatement();
-            ResultSet rs = ste.executeQuery(requete);
+            pst = cnx.prepareStatement(requete);
+            pst.setString(1, name); // Définir la valeur du paramètre
+            ResultSet rs = pst.executeQuery();
 
-            while (rs.next()) {
-
-                ev = new reclamation(rs.getInt("id_reclamation"), rs.getString("name"), rs.getString("image"), rs.getString("commentaire"), rs.getDate("updated"));
+            if (rs.next()) { // Vérifier si un résultat a été trouvé
+                ev = new reclamation(
+                        rs.getInt("id_reclamation"),
+                        rs.getString("name"),
+                        rs.getString("image"),
+                        rs.getString("commentaire"),
+                        rs.getDate("updated"),
+                        rs.getString("statut"),
+                        rs.getString("email")
+                );
             }
         } catch (SQLException ex) {
             Logger.getLogger(reclamationService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return ev;
-    }
-
-    public ObservableList<reclamation> Fetchevs() {
-        ObservableList<reclamation> evs = FXCollections.observableArrayList();
-        String requete = "SELECT * FROM `reclamation`";
-        try {
-            ste = (Statement) cnx.createStatement();
-            ResultSet rs = ste.executeQuery(requete);
-
-            while (rs.next()) {
-                evs.add(new reclamation(rs.getInt("id_reclamation"), rs.getString("name"), rs.getString("image"), rs.getString("commentaire"), rs.getDate("updated")));
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(reclamationService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return evs;
+        return ev; // Retourner null si aucune réclamation n'est trouvée
     }
 
 
-    
+
+
+
 
     public ObservableList<reclamation> chercherev(String chaine) {
         String sql = "SELECT * FROM reclamation WHERE (name LIKE ?   ) order by name ";
@@ -199,7 +207,9 @@ public class reclamationService implements IreclamationService<reclamation> {
 
                 e.setImage(rs.getString("Image"));
                 e.setCommentaire(rs.getString("commentaire"));
+                e.setEmail(rs.getString("email"));
                 e.setUpdated(rs.getDate("updated"));
+                e.setStatut(rs.getString("statut"));
 
 
 
@@ -226,7 +236,9 @@ public class reclamationService implements IreclamationService<reclamation> {
             e.setImage(rs.getString("Image"));
             e.setCommentaire(rs.getString("commentaire"));
             e.setUpdated(rs.getDate("updated"));
+            e.setEmail(rs.getString("email"));
 
+            e.setStatut(rs.getString("statut"));
 
 
             e.setId_reclamation(rs.getInt("id_reclamation"));
@@ -234,7 +246,27 @@ public class reclamationService implements IreclamationService<reclamation> {
         }
         return reclamation;
     }
+    public String GenerateQrev(reclamation ev) throws FileNotFoundException, IOException {
+        // Construire la chaîne d'informations avec tous les champs de la réclamation
+        String evInfo = "ID de la réclamation: " + ev.getId_reclamation() + "\n" +
+                "Nom d'utilisateur: " + ev.getName() + "\n" +
+                "Email: " + ev.getEmail() + "\n" +
+                "Date: " + ev.getUpdated() + "\n" +
+                "Commentaire de la réclamation: " + ev.getCommentaire() + "\n" +
+                "Statut: " + ev.getStatut() + "\n" +
+                "Lien vers l'image: " + ev.getImage() + "\n";
 
+        // Générer le QR code
+        ByteArrayOutputStream out = QRCode.from(evInfo).to(ImageType.JPG).stream();
+        String filename = ev.getName() + "_QrCode.jpg";
+        File f = new File("C:\\xamp\\htdocs\\xchangex\\" + filename);
+        FileOutputStream fos = new FileOutputStream(f);
+        fos.write(out.toByteArray());
+        fos.flush();
+
+        System.out.println("QR code généré avec succès");
+        return filename;
+    }
 
 
 }
